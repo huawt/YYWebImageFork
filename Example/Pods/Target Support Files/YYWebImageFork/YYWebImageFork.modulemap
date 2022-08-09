@@ -1,0 +1,6 @@
+framework module YYWebImageFork {
+  umbrella header "YYWebImageFork-umbrella.h"
+
+  export *
+  module * { export * }
+}

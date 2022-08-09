@@ -1,0 +1,39 @@
+{
+  "name": "YYWebImageFork",
+  "summary": "Asynchronous image loading framework.",
+  "version": "1.0.0",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ibireme": "ibireme@gmail.com"
+  },
+  "social_media_url": "http://blog.ibireme.com",
+  "homepage": "https://github.com/huawt/YYWebImageFork",
+  "platforms": {
+    "ios": "12.0"
+  },
+  "source": {
+    "git": "https://github.com/huawt/YYWebImageFork.git",
+    "tag": "1.0.0"
+  },
+  "requires_arc": true,
+  "source_files": [
+    "YYWebImageFork/Classes/*.{h,m}",
+    "YYWebImageFork/Classes/Categories/*.{h,m}"
+  ],
+  "public_header_files": [
+    "YYWebImageFork/Classes/*.{h}",
+    "YYWebImageFork/Classes/Categories/*.{h}"
+  ],
+  "private_header_files": "YYWebImageFork/Classes/Categories/_*.{h}",
+  "dependencies": {
+    "YYImageWebp": [
+
+    ],
+    "YYCache": [
+
+    ]
+  }
+}

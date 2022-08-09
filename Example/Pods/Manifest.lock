@@ -1,0 +1,29 @@
+PODS:
+  - YYCache (1.0.4)
+  - YYImageWebp (1.0.0)
+  - YYWebImageFork (1.0.0):
+    - YYCache
+    - YYImageWebp
+
+DEPENDENCIES:
+  - YYCache
+  - YYImageWebp
+  - YYWebImageFork (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - YYCache
+    - YYImageWebp
+
+EXTERNAL SOURCES:
+  YYWebImageFork:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYImageWebp: b04cb1fd6b8dd4132c86abe990149305f6a5ed7c
+  YYWebImageFork: a16a0456ed7cde1d4e1e0c775b4ce3782784b0d6
+
+PODFILE CHECKSUM: ff89ec49f305324d10905e70c2252682357d2152
+
+COCOAPODS: 1.11.3
