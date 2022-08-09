@@ -13,12 +13,7 @@
 #import "UIImage+YYWebImage.h"
 #import <ImageIO/ImageIO.h>
 #import <libkern/OSAtomic.h>
-
-#if __has_include(<YYImageWebp/YYImageWebp.h>)
 #import <YYImageWebp/YYImageWebp.h>
-#else
-#import "YYImageWebp.h"
-#endif
 
 
 #define MIN_PROGRESSIVE_TIME_INTERVAL 0.2

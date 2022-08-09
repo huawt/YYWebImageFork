@@ -12,19 +12,8 @@
 #import "YYImageCache.h"
 #import "YYImage.h"
 #import "UIImage+YYWebImage.h"
-
-#if __has_include(<YYImageWebp/YYImageWebp.h>)
 #import <YYImageWebp/YYImageWebp.h>
-#else
-#import "YYImageWebp.h"
-#endif
-
-#if __has_include(<YYCache/YYCache.h>)
 #import <YYCache/YYCache.h>
-#else
-#import "YYCache.h"
-#endif
-
 
 
 static inline dispatch_queue_t YYImageCacheIOQueue() {
