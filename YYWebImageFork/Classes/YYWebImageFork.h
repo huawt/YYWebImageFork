@@ -11,17 +11,17 @@
 
 #import <UIKit/UIKit.h>
 
-#if __has_include(<YYWebImage/YYWebImage.h>)
+#if __has_include(<YYWebImageFork/YYWebImageFork.h>)
 FOUNDATION_EXPORT double YYWebImageVersionNumber;
 FOUNDATION_EXPORT const unsigned char YYWebImageVersionString[];
-#import <YYWebImage/YYImageCache.h>
-#import <YYWebImage/YYWebImageOperation.h>
-#import <YYWebImage/YYWebImageManager.h>
-#import <YYWebImage/UIImage+YYWebImage.h>
-#import <YYWebImage/UIImageView+YYWebImage.h>
-#import <YYWebImage/UIButton+YYWebImage.h>
-#import <YYWebImage/CALayer+YYWebImage.h>
-#import <YYWebImage/MKAnnotationView+YYWebImage.h>
+#import <YYWebImageFork/YYImageCache.h>
+#import <YYWebImageFork/YYWebImageOperation.h>
+#import <YYWebImageFork/YYWebImageManager.h>
+#import <YYWebImageFork/UIImage+YYWebImage.h>
+#import <YYWebImageFork/UIImageView+YYWebImage.h>
+#import <YYWebImageFork/UIButton+YYWebImage.h>
+#import <YYWebImageFork/CALayer+YYWebImage.h>
+#import <YYWebImageFork/MKAnnotationView+YYWebImage.h>
 #else
 #import "YYImageCache.h"
 #import "YYWebImageOperation.h"
