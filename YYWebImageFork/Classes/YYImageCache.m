@@ -10,7 +10,6 @@
 //
 
 #import "YYImageCache.h"
-#import "YYImage.h"
 #import "UIImage+YYWebImage.h"
 #import <YYImageWebp/YYImageWebp.h>
 #import <YYCache/YYCache.h>
@@ -47,7 +46,7 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
     NSData *scaleData = [YYDiskCache getExtendedDataFromObject:data];
     CGFloat scale = 0;
     if (scaleData) {
-        scale = ((NSNumber *)[NSKeyedUnarchiver unarchiveObjectWithData:scaleData]).doubleValue;
+        scale = ((NSNumber *)[NSKeyedUnarchiver unarchivedObjectOfClass:[NSNumber class] fromData:scaleData error:nil]).doubleValue;
     }
     if (scale <= 0) scale = [UIScreen mainScreen].scale;
     UIImage *image;
@@ -133,7 +132,7 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
     if (type & YYImageCacheTypeDisk) { // add to disk cache
         if (imageData) {
             if (image) {
-                [YYDiskCache setExtendedData:[NSKeyedArchiver archivedDataWithRootObject:@(image.scale)] toObject:imageData];
+                [YYDiskCache setExtendedData:[NSKeyedArchiver archivedDataWithRootObject:@(image.scale) requiringSecureCoding:NO error:nil] toObject:imageData];
             }
             [_diskCache setObject:imageData forKey:key];
         } else if (image) {
@@ -141,7 +140,7 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
                 __strong typeof(_self) self = _self;
                 if (!self) return;
                 NSData *data = [image yy_imageDataRepresentation];
-                [YYDiskCache setExtendedData:[NSKeyedArchiver archivedDataWithRootObject:@(image.scale)] toObject:data];
+                [YYDiskCache setExtendedData:[NSKeyedArchiver archivedDataWithRootObject:@(image.scale) requiringSecureCoding:NO error:Nil] toObject:data];
                 [self.diskCache setObject:data forKey:key];
             });
         }
@@ -198,7 +197,7 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
         UIImage *image = nil;
         
         if (type & YYImageCacheTypeMemory) {
-            image = [_memoryCache objectForKey:key];
+            image = [self->_memoryCache objectForKey:key];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(image, YYImageCacheTypeMemory);
@@ -208,10 +207,10 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
         }
         
         if (type & YYImageCacheTypeDisk) {
-            NSData *data = (id)[_diskCache objectForKey:key];
+            NSData *data = (id)[self->_diskCache objectForKey:key];
             image = [self imageFromData:data];
             if (image) {
-                [_memoryCache setObject:image forKey:key];
+                [self->_memoryCache setObject:image forKey:key];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     block(image, YYImageCacheTypeDisk);
                 });
@@ -232,7 +231,7 @@ static inline dispatch_queue_t YYImageCacheDecodeQueue() {
 - (void)getImageDataForKey:(NSString *)key withBlock:(void (^)(NSData *imageData))block {
     if (!block) return;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *data = (id)[_diskCache objectForKey:key];
+        NSData *data = (id)[self->_diskCache objectForKey:key];
         dispatch_async(dispatch_get_main_queue(), ^{
             block(data);
         });

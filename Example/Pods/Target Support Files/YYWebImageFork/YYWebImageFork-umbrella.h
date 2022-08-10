@@ -11,7 +11,7 @@
 #endif
 
 #import "YYImageCache.h"
-#import "YYWebImage.h"
+#import "YYWebImageFork.h"
 #import "YYWebImageManager.h"
 #import "YYWebImageOperation.h"
 #import "CALayer+YYWebImage.h"
